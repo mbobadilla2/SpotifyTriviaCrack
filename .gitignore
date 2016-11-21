@@ -2,3 +2,5 @@
 node_modules/*
 
 tokens.txt
+
+public/js/credentials.js

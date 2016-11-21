@@ -1,10 +1,34 @@
 $(document).ready(function(){
-    getPlaylist();
+    var resultTemp = $("#result").html();
+
+    $("a").on("click", function(e){
+        e.preventDefault();
+    });
+
+    $("#exitosMX").on("click", function(){
+        var exitosMexico = {
+            name:"Éxitos de México",
+            url: "https://api.spotify.com/v1/users/spotifyenespa%C3%B1ol/playlists/3lCaS7QcP5GzAP70rd9bpV/tracks"
+        }
+
+        getPlaylist(exitosMexico, resultTemp);
+    });
+
+    $("#rockEspanol").on("click", function(){
+        var rockEspanol = {
+            name:"Rock en español",
+            url: "https://api.spotify.com/v1/users/spotifyenespa%C3%B1ol/playlists/4YoI4gyyoBCIexSdjqJMfl/tracks"
+        }
+
+        getPlaylist(rockEspanol, resultTemp);
+    });
+
+
 });
 
-function getPlaylist(){
+function getPlaylist(playlist, temp){
     $.ajax({
-            url: "https://api.spotify.com/v1/users/spotifyenespa%C3%B1ol/playlists/3lCaS7QcP5GzAP70rd9bpV/tracks",
+            url: playlist.url,
             headers: {
                 Authorization: oauthtoken
                 //Host: "api.spotify.com"
@@ -12,18 +36,23 @@ function getPlaylist(){
             accepts: "application/json",
             type: "GET",
             success: function (data) {
-                $("#resultado1").append(data);
+                $("#result").html(temp);
                 console.log(data);
-                /*$("#resultado1").append('<ul id ="ll" class="list-group">');
-                $("#resultado1").append('<li class="list-group-item encabezado"> Artistas </li>');
-                for (var i in data.artists.items) {
-                    var artistId = data.artists.items[i].id;
-                    var artistName = data.artists.items[i].name;
-                    $("#resultado1").append('<li class="list-group-item"><a href="#" id="' + artistId + '" onclick="regresaFalso()" class="ligaArtista">' + artistName + '</a></li>');
-                }*/
+                for (var i in data.items) {
+                    $("#result").append('<a class="list-group-item song" href="'+ data.items[i].track.preview_url + '">' + data.items[i].track.name + '</a>');
+                }
+
+                $(".song").on("click", playSong);
             },
             error: function(data){
 
             }
     });
+}
+
+function playSong(e){
+    e.preventDefault();
+
+    var preview_url = $(this).attr("href");
+    $("#player").attr("src", preview_url);
 }
