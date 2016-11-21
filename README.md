@@ -37,7 +37,7 @@ Then, install its dependencies using the following command:
 
 <p>
   Once your app was created, paste the <code>Cliente ID</code>, <code>Client secret</code> and <code>http://localhost:8888/callback</code>
-  to the <code>app.js</code> file for the values of <code>client_id</code>, <code>client_secret</code> and <code>redirect_uri</code> respectively.
+  to the <code>credentials.js</code> file for the values of <code>client_id</code>, <code>client_secret</code> and <code>redirect_uri</code> respectively.
 </p>
 
 <p>

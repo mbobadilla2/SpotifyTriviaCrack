@@ -6,7 +6,7 @@ function getPlaylist(){
     $.ajax({
             url: "https://api.spotify.com/v1/users/spotifyenespa%C3%B1ol/playlists/3lCaS7QcP5GzAP70rd9bpV/tracks",
             headers: {
-                Authorization: "Bearer Your_oauth_token"
+                Authorization: oauthtoken
                 //Host: "api.spotify.com"
             },
             accepts: "application/json",
