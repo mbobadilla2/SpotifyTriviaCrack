@@ -23,7 +23,7 @@ Then, install its dependencies using the following command:
     $ node app.js
   </code>
 </pre>
-  you'll be prompted with the message <code>Listenig on 8888</code>. That means that the app is running. 
+  you'll get the message <code>Listening on 8888</code>. That means that the app is running. 
   To open it, go to <code>http://localhost:8888/</code> on your web browser.
 </p>
 
@@ -36,13 +36,13 @@ Then, install its dependencies using the following command:
 </p>
 
 <p>
-  Once your app was created, paste the <code>Cliente ID</code>,<code>Client secret</code> and <code>http://localhost:8888/callback</code>
+  Once your app was created, paste the <code>Cliente ID</code>, <code>Client secret</code> and <code>http://localhost:8888/callback</code>
   to the <code>app.js</code> file for the values of <code>client_id</code>, <code>client_secret</code> and <code>redirect_uri</code> respectively.
 </p>
 
 <p>
   Then, go to the <a href="https://developer.spotify.com/web-api/console/get-playlist-tracks/">Spotify developer console</a> and request an <code>oauth token</code>
-  to make requests to the server and find the endpoint nedeed to get an user playlist, a playlist's tracks, user's profile, and more. You'll need to
+  to make requests to the server and find the endpoint needed to get an user playlist, a playlist's tracks, user's profile, and more. You'll need to
   add that <code>oauth token</code> on the <code>main.js</code> file, on the headers section of the ajax request, replacing the words <code>"Your_oauth_token"</code>
   (Leave the word 'Bearer' right in its place). This way, all the queries to the server will be authenticated.
 </p>
