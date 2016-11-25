@@ -9,6 +9,37 @@
 </head>
 <body>
 	
+	<!-- modal window -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			
+			<!-- modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+					<h4 class="modal-title" id="modal-playlist-title"></h4>
+				</div>
+				<div class="modal-body">
+					
+					<p>You're about to start this round using this playlist. It's correct?</p>
+
+
+					<audio src="" autoplay="true" controls="true" preload="auto" id="player"></audio>
+					<div class="list-group" id="result">
+						<a class="list-group-item active">Query results</a>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Play</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--./modal window-->
+
 	<ul class="nav nav-tabs">
 	  <li role="presentation" class="active"><a href="#">Spotify Trivia Crack</a></li>
 	  <li role="presentation"><a href="#">How to play</a></li>
@@ -41,19 +72,13 @@
 				</a>
 				<a href="#" class="list-group-item" id="exitosMX">Éxitos de México</a>
 				<a href="#" class="list-group-item" id="rockEspanol">Rock en español</a>
-				<a href="#" class="list-group-item">Playlist #3</a>
-				<a href="#" class="list-group-item">Playlist #4</a>
+				<a href="#" class="list-group-item" id="metallica">Metallica: The essentials</a>
+				<a href="#" class="list-group-item" id="theDoors">The Doors</a>
 				<a href="#" class="list-group-item">Playlist #5</a>
 			</div><!-- /.list-group col-lg-4 -->
 
 
 		</div><!-- /.panel.body-->
-
-			<audio src="" autoplay="true" controls="true" id="player"></audio>
-
-			<div class="list-group" id="result">
-				<a class="list-group-item active">Query results</a>
-			</div>
 
 	</div><!-- /.panel panel.default-->
 
@@ -64,6 +89,7 @@
 	</div>
 	-->
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/credentials.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
