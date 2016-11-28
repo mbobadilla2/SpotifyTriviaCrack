@@ -4,8 +4,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta charset="UTF-8">
 	<title>Spotify Trivia Crack</title>
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-material-design/bootstrap-material-design.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-material-design/ripples.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -33,7 +32,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-raised btn-primary" id="play">Play</button>
+					<button type="button" class="btn btn-primary" id="play">Play</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				</div>
 			</div>
@@ -42,78 +41,41 @@
 	</div>
 	<!--./modal window-->
 
-	<div class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="javascript:void(0)">Spotify Trivia Crack</a>
-	    </div>
-	    <div class="navbar-collapse collapse navbar-responsive-collapse">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="javascript:void(0)">Home</a></li>
-	        <li><a href="javascript:void(0)">How to play</a></li>
-	        <li><a href="javascript:void(0)">About</a></li>
-	      </ul>
-	    </div>
-	  </div>
-	</div>
+	<ul class="nav nav-tabs">
+	  <li role="presentation" class="active"><a href="#">Spotify Trivia Crack</a></li>
+	  <li role="presentation"><a href="#">How to play</a></li>
+	  <li role="presentation"><a href="#">About</a></li>
+	</ul>
 
 	<div class="container-fluid panel panel-primary">
 		<div class="panel-heading">To start to play...</div>
   		<div class="panel-body">
 
-			<div class="panel panel-primary col-lg-5">
-				<div class="panel-heading">Search for artist</div>
-			    <div class="input-group panel-body">
+			<div class="list-group col-lg-5">
+				<a href="" class="list-group-item active">
+					Search for artist
+				</a>
+			    <div class="input-group">
 			      	<input type="text" class="form-control" placeholder="Search for...">
 			      	<span class="input-group-btn">
-			        	<button class="btn btn-raised btn-primary" type="button">Go!</button>
+			        	<button class="btn btn-default" type="button">Go!</button>
 			   		</span>
 				</div><!-- /input-group -->
-			</div><!-- /.col-lg-5 -->
+			</div><!-- /.col-lg-6 -->
 
 			<div class="list-group or col-lg-2">
 				<span class="list-group-item">OR...</span>
 			</div>
 
-			<div class="list-group">
-
-			<div class="panel panel-primary col-lg-5">
-				<div class="panel-heading">Select a playlist</div>
-				<div class="list-group">
-	
-				<!-- Playlist -->
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-		      		<a href="#" class="list-group-item" id="exitosMX">Éxitos de México</a>
-		  		</div>
-		  		<!-- ./Playlist -->
-
-				<!-- Playlist -->
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-		      		<a href="#" class="list-group-item" id="rockEspanol">Rock en español</a>
-		  		</div>
-		  		<!-- ./Playlist -->
-
-				<!-- Playlist -->
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-		      		<a href="#" class="list-group-item" id="metallica">Metallica: The essentials</a>
-		  		</div>
-		  		<!-- ./Playlist -->
-
-				<!-- Playlist -->
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-		      		<a href="#" class="list-group-item" id="theDoors">The Doors</a>
-		  		</div>
-		  		<!-- ./Playlist -->
-		  		<div class="list-group-separator"></div>
+			<div class="list-group col-lg-5">
+				<a href="#" class="list-group-item active">
+					Select a playlist
+				</a>
+				<a href="#" class="list-group-item" id="exitosMX">Éxitos de México</a>
+				<a href="#" class="list-group-item" id="rockEspanol">Rock en español</a>
+				<a href="#" class="list-group-item" id="metallica">Metallica: The essentials</a>
+				<a href="#" class="list-group-item" id="theDoors">The Doors</a>
+				<a href="#" class="list-group-item">Playlist #5</a>
 			</div><!-- /.list-group col-lg-4 -->
 
 

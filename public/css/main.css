@@ -14,3 +14,7 @@
 .or{
 	text-align: center;
 }
+
+a.list-group-item{
+  padding: 15px !important;
+}
