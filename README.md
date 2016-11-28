@@ -1,5 +1,10 @@
 # SpotifyTriviaCrack
-Responsive web app that uses the Spotify web services to play a musical trivia. Every round consists of 5 songs that the user has to guess its name from 4 different choices. The more songs the user guess, the more points the user gets.
+<p>Responsive web app that uses the Spotify web services to play a musical trivia. Every round consists of 5 songs that the user has to guess its name from 4 different choices. The more songs the user guess, the more points the user gets.
+</p>
+
+<p>
+This app uses the Material Design Theme for Bootstrap by <a href="https://github.com/FezVrasta/bootstrap-material-design"> FezVrastra.</a>
+</p>
 
 <h2>Installation</h2>
 <p>To run this application, you need to install Node.js on your computer. You can download it from its 
