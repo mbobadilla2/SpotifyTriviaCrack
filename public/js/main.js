@@ -1,12 +1,6 @@
 var songsLimit = 5;
 var optionsLimit = 4;
-//Contains the index of the songs
-//var selectedSongsIndex = new Array(songsLimit);
-//Contains the name of the songs
-//var selectedSongsName
-var selectedSongs = new Array(songsLimit);
-//Contains the options for every song
-var selectedOptions = new Array(optionsLimit);
+var selectedSongs = new Array();
 
 $(document).ready(function(){
     var resultState = $("#result").html();
@@ -70,7 +64,7 @@ function getPlaylist(playlist, resultState){
 
                 //selectedSongsIndex = new Array(songsLimit);
                 //selectedSongsName = new Array(songsLimit);
-                selectedSongs = new Array(songsLimit);
+                selectedSongs = new Array();
 
                 console.log("Tamaño de la lista: " + data.items.length);
                 for(var i = 0; i < songsLimit; i++){
@@ -93,6 +87,9 @@ function getPlaylist(playlist, resultState){
                 $("#myModal").modal('show');
 
                 $("#play").on("click", function(){
+                    $("#myModal").modal('hide');
+                    $("#myModal-2").modal('show');
+
                     playRound(data);
                 });
 
@@ -107,10 +104,10 @@ function getPlaylist(playlist, resultState){
                 $(".modal-body").append("<p>There was a problem getting the playlist: " + 
                     data.status + " ("+data.statusText+")</p>" +
                     "<p>The oauth token expired</p>");
-                $(".modal-body").addClass("btn-danger");
+                $(".modal-body").addClass("alert alert-danger");
 
                 $(".modal-footer").empty();
-                $(".modal-footer").append('<button type="button" class="btn btn-danger" data-dismiss="modal">Done</button>');
+                $(".modal-footer").append('<button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Done</button>');
             }
     });
 }
@@ -131,9 +128,8 @@ function ranSong(limit, data){
     console.log("***** Número aleatorio: " + randomNumber);
 
     for(var i in selectedSongs){
-        if(randomNumber == selectedSongs[i] || 
-            data.items[randomNumber].track.preview_url == null ||
-                typeof data.items[randomNumber].track.preview_url == null){
+        if(randomNumber == selectedSongs[i].track_number || 
+            data.items[randomNumber].track.preview_url == null){
             console.log("Número repetido :'v    : " + "random: " + randomNumber + " | i : " + selectedSongs[i]);
             console.log("O url nula :'v  : " + data.items[randomNumber].track.preview_url);
             //break;
@@ -141,12 +137,14 @@ function ranSong(limit, data){
         }
 
     }
+
     var randomSong = {
         name: data.items[randomNumber].track.name,
         preview_url : data.items[randomNumber].track.preview_url,
-        opt1 : "",
-        opt2 : "",
-        opt3 : "" 
+        track_number : randomNumber,
+        opt1 : ranOpt(data.items.length-1, data, randomNumber),
+        opt2 : ranOpt(data.items.length-1, data, randomNumber),
+        opt3 : ranOpt(data.items.length-1, data, randomNumber),
     };
 
     selectedSongs.push(randomSong);
@@ -155,44 +153,93 @@ function ranSong(limit, data){
     return randomNumber;
 }
 
-function ranOpt(limit, data, song){
+function ranOpt(limit, data, pickedSongIndex){
     var randomNumber = parseInt(Math.random() * limit) + 1;
+    
+    if(randomNumber == pickedSongIndex){
+        return ranOpt(limit, data, pickedSongIndex);
+        console.log("***** Opción coincide con canción");
+    
+    }else{
+        return data.items[randomNumber].track.name;
+    }
 
-    for(var i in data.items){
-     //   if()
+}
+
+function mixOptions(){
+    var tempOptions = new Array();
+    var counter = 0;
+    var unique = true;
+    var randomNumber = 0;
+
+    for(;;){
+        unique = true;
+        randomNumber = parseInt(Math.random() * optionsLimit) + 1;
+
+        for(var i in tempOptions){
+            if(randomNumber == tempOptions[i]){
+                unique = false;
+                break;
+            }
+        }
+
+        if(unique){
+            tempOptions.push(randomNumber);
+            counter++;
+
+            if(counter == optionsLimit){
+                return tempOptions;
+            }
+        }
     }
 }
 
 function playRound(data){
-    
+    var scrambledOptions = mixOptions();
+    var optionAux = new Array();
+
+    optionAux[scrambledOptions[0]-1] = selectedSongs[0].name;
+    optionAux[scrambledOptions[1]-1] = selectedSongs[0].opt1;
+    optionAux[scrambledOptions[2]-1] = selectedSongs[0].opt2;
+    optionAux[scrambledOptions[3]-1] = selectedSongs[0].opt3;
+
     $("#result").empty();
-    $("#result").append('<span class="list-group-item active">Spoiler: ' + selectedSongs[5].name + '</span>');
-    $("#result").append('<a class="list-group-item song" href="#">' + 
-            selectedSongs[5].name + '</a>');
+    $("#result").append('<div class="panel panel-primary"> <div class="panel-heading">Spoiler: ' + selectedSongs[0].name + '</div>');
+    $("#result").append('<div class="list-group-separator"></div>');
 
-    for(var i = 0; i < optionsLimit-1; i++){
-        //var selectedOption = ranOpt(data.items.length-1, data, selectedSongs[5]]);
+    for(var i = 0; i < optionAux.length; i++){
+        $("#result").append('<a class="list-group-item song" href="#">' + 
+                optionAux[i] + '</a>');
 
-        //$("#result").append('<a class="list-group-item song" href="#">' + 
-          //  data.items[selectedOption].track.name + '</a>');
+        $("#result").append('<div class="list-group-separator"></div>');
     }
 
-    $("#result").css({
-        "display":"inline"
-    });
+    $("#result").append('</div>');  
 
-    $("#player").attr("src", selectedSongs[5].preview_url);
+    $("#player").attr("src", selectedSongs[0].preview_url);
+
+    $(".song").on("click", function(e){
+        e.preventDefault();
+        evaluate(selectedSongs[0].name, this);
+    });
 
     //Stops the music player after 11 seconds
     setTimeout(function(){
         $("#player").attr("src", "");
     }, 11000);
-
-    $(".modal-footer").empty();
 }
 
+function evaluate(song, option){
+    //alert("Option choosed: " + option.text);
+    $(option).removeClass("song");
 
+    if(song == option.text){
+        $(option).addClass("alert alert-success");
 
+    }else{
+        $(option).addClass("alert alert-danger");
+    }
+}
 
 
 

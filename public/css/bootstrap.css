@@ -5270,9 +5270,20 @@ a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
   color: #333;
 }
-a.list-group-item:hover,
+/**/
+a.list-group-item{
+  text-decoration: none;
+}
+a.list-group-item.song:hover{
+  color: #555;
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+/**/
+/*a.list-group-item:hover,*/
+a.playlist:hover,
 button.list-group-item:hover,
-a.list-group-item:focus,
+/*a.list-group-item:focus,*/
 button.list-group-item:focus {
   color: #555;
   text-decoration: none;
