@@ -11,8 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-	
-	<!-- modal window -errror-->
+
+	<!-- modal window -error-->
 	<div id="myModal-error" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog">
 			
@@ -83,14 +83,50 @@
 				</div>
 
 				<div class="modal-body">					
+				<div class="progress song-timer-container">
+			  		<div class="progress-bar progress-bar-info progress.bar-stripped song-timer" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+					</div>
+				</div>
 
-				<audio src="" autoplay="true" controls="true" preload="auto" id="player"></audio>
+				<audio src="" autoplay="true" controls="true" preload="auto" id="player" style="display: none"></audio>
 
 					<div class="list-group" id="result">
 					</div>
 				</div>
-				<div class="modal-footer">
+				<!--<div class="modal-footer">
 					<button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Close</button>
+				</div>-->
+			</div>
+
+		</div>
+	</div>
+	<!--./modal window-->
+
+	<!-- modal window - score -->
+	<div id="myModal-score" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			
+			<!-- modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h4 class="modal-title">Your score</h4>					
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">					
+					<div class="list-group score-list">
+						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-raised btn-default" data-dismiss="modal">Done</button>
 				</div>
 			</div>
 
@@ -235,3 +271,7 @@
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
+
+
+
+

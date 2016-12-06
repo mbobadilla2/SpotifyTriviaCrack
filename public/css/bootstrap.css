@@ -8,7 +8,23 @@
 .playlist-container{
     max-height: 300px;
     overflow-y:scroll; 
-  }
+}
+
+.song-timer-container{
+  height: 6px !important;
+}
+
+.progress-bar {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
+img.song-cover{
+  background-color: red;
+  height: 80px;
+  width: 80px;
+  margin-right: 10px;
+}
 
 html {
   font-family: sans-serif;

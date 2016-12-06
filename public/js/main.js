@@ -9,7 +9,7 @@ $(document).ready(function(){
     getToken();
 
     //Request for a new token every 50 minutes.
-    setInterval(getToken(), 3000000);
+    //setInterval(getToken(), 3000000);
 
     var resultState = $("#result").html();
 
@@ -177,13 +177,14 @@ function getPlaylist(playlist, resultState){
                 
                 $("#modal-playlist-title").text(playlist.name);
                 $("#myModal-confirm").modal('show');
+                //$("#myModal-score").modal('show');
 
                 $("#play").on("click", function(){
                     $("#myModal-confirm").modal('hide');
                     $("#myModal-play").modal('show');
 
                     clearTimer();
-                    playRound(0);
+                    prepareRound(0);
                 });
 
                 for(var j in selectedSongs){
@@ -231,6 +232,8 @@ function ranSong(limit, data){
         opt1 : ranOpt(data.items.length-1, data, randomNumber),
         opt2 : ranOpt(data.items.length-1, data, randomNumber),
         opt3 : ranOpt(data.items.length-1, data, randomNumber),
+        disc_cover : data.items[randomNumber].track.album.images,
+        correct : false
     };
 
     selectedSongs.push(randomSong);
@@ -280,6 +283,12 @@ function mixOptions(){
     }
 }
 
+function prepareRound(index){
+    setTimeout(function(){
+        playRound(index);
+    }, 1000);
+}
+
 function playRound(index){
     var scrambledOptions = mixOptions();
     var optionAux = new Array();
@@ -304,6 +313,16 @@ function playRound(index){
 
     $("#player").attr("src", selectedSongs[index].preview_url);
 
+    var timerWidth = $(".song-timer-container").width();
+    $(".song-timer").css({
+        "width": timerWidth + "px"
+    });
+
+    $(".song-timer").animate({
+            width: 0
+    }, 11000, "linear");
+
+
     //Stops the music player after 11 seconds
     songTimer = setTimeout(function(){
         $("#player").attr("src", "");
@@ -315,6 +334,7 @@ function playRound(index){
     $(".song").on("click", function(e){
         e.preventDefault();
         clearTimer(songTimer);
+        $(".song-timer").stop();
         $("#player").attr("src", "");
         $('.song').prop('onclick',null).off('click');
         evaluate(selectedSongs[index].name, this, index);
@@ -344,6 +364,7 @@ function evaluate(song, option, index, optionAux){
 
         if(song == option.text){
             $(option).addClass("alert alert-success");
+            selectedSongs[index].correct = true;
             score ++;
 
         }else{
@@ -353,11 +374,37 @@ function evaluate(song, option, index, optionAux){
     // Wait 2 seconds for next song
     setTimeout(function(){
         if(index == songsLimit-1){
-            alert("Game over \n\n Your score: " + score + "/" +songsLimit);
+            //alert("Game over \n\n Your score: " + score + "/" +songsLimit);
+            showScore();
         }else{
             playRound(index+1);
         }
     }, 2000);
+}
+
+function showScore(){
+    for(var i = 0; i < songsLimit; i++){
+        var cover_url = selectedSongs[i].disc_cover[1].url;
+        $(".score-list div:nth-child("+ (i+1) +") img").attr("src", cover_url);
+        $(".score-list div:nth-child("+ (i+1) +")").append(selectedSongs[i].name);
+        if(selectedSongs[i].correct){
+            $(".score-list div:nth-child("+ (i+1) +")").css({
+                "border-left": "20px solid #4caf50",
+                "margin": "5px 0px",
+                "padding-left": "0"
+            });
+
+        }else{
+            $(".score-list div:nth-child("+ (i+1) +")").css({
+                "border-left": "20px solid #f44336",
+                "margin": "5px 0px",
+                "padding-left": "0"
+            });
+        }
+    }
+
+    $("#myModal-play").modal('hide');
+    $("#myModal-score").modal('show');
 }
 
 function clearTimer(){
