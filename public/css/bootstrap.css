@@ -4,6 +4,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+.playlist-container{
+    max-height: 300px;
+    overflow-y:scroll; 
+  }
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;

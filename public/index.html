@@ -12,8 +12,34 @@
 </head>
 <body>
 	
-	<!-- modal window -->
-	<div id="myModal" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
+	<!-- modal window -errror-->
+	<div id="myModal-error" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			
+			<!-- modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h4 class="modal-title">Something went wrong</h4>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body panel panel-danger">
+					<p>There was a problem fetching the playlist: <span class="error-code"></span></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Done</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--./modal window-->
+
+
+	<!-- modal window -sure?-->
+	<div id="myModal-confirm" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog">
 			
 			<!-- modal content -->
@@ -41,8 +67,8 @@
 	</div>
 	<!--./modal window-->
 
-	<!-- modal window - 2 -->
-	<div id="myModal-2" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
+	<!-- modal window - play -->
+	<div id="myModal-play" class="modal fade" role="dialog" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog">
 			
 			<!-- modal content -->
@@ -114,8 +140,13 @@
 
 			<div class="panel panel-primary col-lg-5">
 				<div class="panel-heading">Select a playlist</div>
-				<div class="list-group">
+				<div class="list-group playlist-container">
 
+				<!-- Playlist -->
+			  	<div class="list-group-separator"></div>
+		      		<a href="#" class="list-group-item playlist" id="camilo">Camilo Sesto</a>
+		  		<!-- ./Playlist -->
+	
 				<!-- Playlist -->
 			  	<div class="list-group-separator"></div>
 		      		<a href="#" class="list-group-item playlist" id="juanGabriel">Juan Gabriel</a>

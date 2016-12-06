@@ -5,12 +5,27 @@ var songTimer;
 var score = 0;
 
 $(document).ready(function(){
+    //Request for a new token
+    getToken();
+
+    //Request for a new token every 50 minutes.
+    setInterval(getToken(), 3000000);
+
     var resultState = $("#result").html();
 
     $("a").on("click", function(e){
         e.preventDefault();
     });
 
+
+    $("#camilo").on("click", function(){
+        var playlist = {
+            name: $(this).text(),
+            url: "https://api.spotify.com/v1/users/johnlennon01/playlists/4mZinGUWTMm8rvnLHzJqoF/tracks"
+        }
+
+        getPlaylist(playlist, resultState);
+    });
 
     $("#juanGabriel").on("click", function(){
         var playlist = {
@@ -161,11 +176,11 @@ function getPlaylist(playlist, resultState){
                 $(".song").on("click", playSong);
                 
                 $("#modal-playlist-title").text(playlist.name);
-                $("#myModal").modal('show');
+                $("#myModal-confirm").modal('show');
 
                 $("#play").on("click", function(){
-                    $("#myModal").modal('hide');
-                    $("#myModal-2").modal('show');
+                    $("#myModal-confirm").modal('hide');
+                    $("#myModal-play").modal('show');
 
                     clearTimer();
                     playRound(0);
@@ -177,15 +192,8 @@ function getPlaylist(playlist, resultState){
 
             },
             error: function(data){
-                $("#myModal").modal('show');
-                $(".modal-body").empty();
-                $(".modal-body").append("<p>There was a problem getting the playlist: " + 
-                    data.status + " ("+data.statusText+")</p>" +
-                    "<p>The oauth token expired</p>");
-                $(".modal-body").addClass("alert alert-danger");
-
-                $(".modal-footer").empty();
-                $(".modal-footer").append('<button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Done</button>');
+                $("#myModal-error").modal('show');
+                $("span.error-code").text(data.status + " (" + data.statusText + ").");
             }
     });
 }
@@ -286,7 +294,7 @@ function playRound(index){
     $("#result").append('<div class="list-group-separator"></div>');
 
     for(var i = 0; i < optionAux.length; i++){
-        $("#result").append('<a class="list-group-item song" href="#">' + 
+        $("#result").append('<a class="list-group-item song song-'+i+'" href="#">' + 
                 optionAux[i] + '</a>');
 
         $("#result").append('<div class="list-group-separator"></div>');
@@ -299,29 +307,49 @@ function playRound(index){
     //Stops the music player after 11 seconds
     songTimer = setTimeout(function(){
         $("#player").attr("src", "");
-        alert("Time's up");
+        $('.song').prop('onclick',null).off('click');
+        evaluate("undefined", selectedSongs[index].name, index, optionAux);
+        //alert("Time's up");
     }, 11000);
 
     $(".song").on("click", function(e){
         e.preventDefault();
         clearTimer(songTimer);
         $("#player").attr("src", "");
+        $('.song').prop('onclick',null).off('click');
         evaluate(selectedSongs[index].name, this, index);
     });
 }
 
-function evaluate(song, option, index){
+function evaluate(song, option, index, optionAux){
     //alert("Option choosed: " + option.text);
-    $(option).removeClass("song");
 
-    if(song == option.text){
-        $(option).addClass("alert alert-success");
-        score ++;
+    // The user ran out of time
+    if(song == "undefined"){
+        console.log(optionAux);
+        for(var i in optionAux){
+            console.log("FOR: " + optionAux[i]);
+            if(optionAux[i] == option){
+                console.log("Option for time up");
+                $("#result a.song-"+i).removeClass("song");
+                $("#result a.song-"+i).addClass("alert alert-info");
+                break;
+            }
+        }
 
+
+    // The user did chose an option
     }else{
-        $(option).addClass("alert alert-danger");
-    }
+        $(option).removeClass("song");
 
+        if(song == option.text){
+            $(option).addClass("alert alert-success");
+            score ++;
+
+        }else{
+            $(option).addClass("alert alert-danger");
+        }
+    }
     // Wait 2 seconds for next song
     setTimeout(function(){
         if(index == songsLimit-1){
