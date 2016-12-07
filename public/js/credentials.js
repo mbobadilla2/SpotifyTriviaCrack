@@ -1,6 +1,6 @@
 var client_id = '5577a9440dd246b09cd5168ba7cb7286'; // Your client id
 var client_secret = '45214add34454059852caf42132b6808'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://mbobadilla2.github.io/SpotifyTriviaCrack/public/callback'; // Your redirect uri
 
 var oauthtoken = "";
 
