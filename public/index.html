@@ -111,18 +111,18 @@
 				<div class="modal-header">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h4 class="modal-title">Your score</h4>					
+							<h4 class="modal-title score-heading">Your score</h4>					
 						</div>
 					</div>
 				</div>
 
 				<div class="modal-body">					
 					<div class="list-group score-list">
-						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
-						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
-						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
-						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
-						<div class="list-group-item"><img src="" alt="" class="song-cover"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"><span class="song-name"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"><span class="song-name"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"><span class="song-name"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"><span class="song-name"></div>
+						<div class="list-group-item"><img src="" alt="" class="song-cover"><span class="song-name"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -161,10 +161,17 @@
 			<div class="panel panel-primary col-lg-5">
 				<div class="panel-heading">Search for artist</div>
 			    <div class="input-group panel-body">
-			      	<input type="text" class="form-control" placeholder="Search for...">
+			      	<input type="text" class="form-control" id="artistName" placeholder="Search for...">
 			      	<span class="input-group-btn">
-			        	<button class="btn btn-raised btn-primary" type="button">Go!</button>
+			        	<!--<button class="btn btn-raised btn-primary" type="button">Go!</button>
+			   		</span>-->
+			   		  	<button class="btn btn-raised btn-primary" id="searchArtist" type="button">Go!</button>
 			   		</span>
+				</div><!-- /input-group -->
+				 <div class="row">
+            <div class="col-lg-12  artist-list-container">
+                <div id="artistList" class="list-group"></div>
+            </div>
 				</div><!-- /input-group -->
 			</div><!-- /.col-lg-5 -->
 
@@ -176,7 +183,7 @@
 
 			<div class="panel panel-primary col-lg-5">
 				<div class="panel-heading">Select a playlist</div>
-				<div class="list-group playlist-container">
+				<div class="list-group  playlist-container">
 
 				<!-- Playlist -->
 			  	<div class="list-group-separator"></div>

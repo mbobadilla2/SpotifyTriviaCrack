@@ -10,6 +10,20 @@
     overflow-y:scroll; 
 }
 
+.artist-list-container{
+  max-height: 227px;
+  overflow-y: scroll;;
+}
+
+.form-control{
+  padding-left: 10px !important;
+}
+
+#resultado1{
+    max-height: 300px;
+    overflow-y:scroll; 
+}
+
 .song-timer-container{
   height: 6px !important;
 }
@@ -17,6 +31,11 @@
 .progress-bar {
     -webkit-transition: none !important;
     transition: none !important;
+}
+
+#myModal-score{
+  max-height: 100% !important;
+  overflow-y: scroll;
 }
 
 img.song-cover{
