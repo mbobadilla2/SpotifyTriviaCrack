@@ -294,9 +294,11 @@ function playSong(e){
     var preview_url = $(this).attr("href");
     $("#player").attr("src", preview_url);
 
+    $("#player").get(0).play();
     //Stops the music player after 11 seconds
     setTimeout(function(){
-        $("#player").attr("src", "");
+        //$("#player").attr("src", "");
+        $("#player").get(0).pause();
     }, 11000);
 }
 
@@ -449,6 +451,7 @@ function playRound(index){
     $("#result").append('</div>');  
 
     $("#player").attr("src", selectedSongs[index].preview_url);
+    $("#player").get(0).play();
 
     $(".song-timer").finish();
 
@@ -464,7 +467,8 @@ function playRound(index){
 
     //Stops the music player after 11 seconds
     songTimer = setTimeout(function(){
-        $("#player").attr("src", "");
+        //$("#player").attr("src", "");
+        $("#player").get(0).pause();
         $('.song').prop('onclick',null).off('click');
         $(".song-timer").stop();
 
@@ -478,7 +482,8 @@ function playRound(index){
         clearTimer();
 
         $(".song-timer").stop();
-        $("#player").attr("src", "");
+        //$("#player").attr("src", "");
+        $("#player").get(0).pause();
         $('.song').prop('onclick',null).off('click');
 
         evaluate(selectedSongs[index].name, this, index);
@@ -550,7 +555,8 @@ function showScore(){
         }
     }
 
-    $("#player").attr("src", "");
+    //$("#player").attr("src", "");
+    $("#player").get(0).pause();
 
     var timerWidth = $(".song-timer-container").width();
     $(".song-timer").css({
